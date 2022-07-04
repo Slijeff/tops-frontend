@@ -1,31 +1,14 @@
 import {Button, FormControl, FormHelperText, FormLabel, Input, Select, VStack} from "@chakra-ui/react";
-import React, {useState} from "react";
+import React from "react";
+import {QueryFormData} from "../hooks/useQueryForm";
 
-const QueryForms: React.FC = () => {
-    const [intersection, setIntersection] = useState<string | undefined>()
-    const [mode, setMode] = useState<string | undefined>("history")
-    const [start, setStart] = useState<string | undefined>("2018-09-12 14:23:02")
-    const [end, setEnd] = useState<string | undefined>("2020-09-12 14:23:02")
-
-    const handleIntersectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setIntersection(e.target.value)
-    }
-    const handleModeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setMode(e.target.value)
-    }
-    const handleStartChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setStart(e.target.value)
-    }
-    const handleEndChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setEnd(e.target.value)
-    }
-
+const QueryForms: React.FC<QueryFormData> = (Q) => {
 
     return (
         <VStack spacing={4}>
             <FormControl>
                 <FormLabel>Select Intersection</FormLabel>
-                <Select onChange={handleIntersectionChange}>
+                <Select onChange={Q.setIntersection}>
                     <option value="int1">Park @ University</option>
                     <option value="int2">Park @ Johnson</option>
                     <option value="int3">Park @ Dayton</option>
@@ -39,24 +22,24 @@ const QueryForms: React.FC = () => {
 
             <FormControl>
                 <FormLabel>Select Mode</FormLabel>
-                <Select onChange={handleModeChange}>
+                <Select onChange={Q.setMode}>
                     <option value="history">Historical Mode</option>
                     <option value="real">Real-time Mode</option>
                 </Select>
             </FormControl>
 
-            {mode === 'history' &&
+            {Q.mode === 'history' &&
                 (
                     <FormControl>
                         <FormLabel>Start Date</FormLabel>
-                        <Input value={start} onChange={handleStartChange}/>
+                        <Input value={Q.start} onChange={Q.setStart}/>
                         <FormHelperText>example: 2018-09-12 14:23:02</FormHelperText>
                     </FormControl>
                 )}
-            {mode === 'history' && (
+            {Q.mode === 'history' && (
                 <FormControl>
                     <FormLabel>End Date</FormLabel>
-                    <Input value={end} onChange={handleEndChange}/>
+                    <Input value={Q.end} onChange={Q.setEnd}/>
                     <FormHelperText>example: 2018-09-12 14:23:02</FormHelperText>
                 </FormControl>
             )}
