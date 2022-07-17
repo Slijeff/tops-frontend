@@ -1,5 +1,5 @@
 import React from "react";
-import {Bar, CartesianGrid, Legend, XAxis, YAxis, Tooltip, BarChart, Label} from "recharts";
+import {Bar, CartesianGrid, XAxis, YAxis, Tooltip, BarChart} from "recharts";
 const Datagraph: React.FC = () => {
     const data = [
         {
@@ -22,7 +22,7 @@ const Datagraph: React.FC = () => {
         }
     ]
     return (
-        <BarChart width={1000} height={300} data={data} style={{paddingBottom: "20px"}}>
+        <BarChart width={1100} height={300} data={data} style={{paddingBottom: "20px"}}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="signalgroup"/>
             <YAxis />
