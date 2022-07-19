@@ -1,0 +1,188 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`QueryForms rendering should render QueryForms correctly 1`] = `
+<div
+  class="chakra-stack css-wulyol"
+>
+  <div
+    class="chakra-form-control css-0"
+    role="group"
+  >
+    <label
+      class="chakra-form__label css-uvho5g"
+      for="field-:r0:"
+      id="field-:r0:-label"
+    >
+      Select Intersection
+    </label>
+    <div
+      class="chakra-select__wrapper css-42b2qy"
+    >
+      <select
+        class="chakra-select css-1ik61og"
+        id="field-:r0:"
+      >
+        <option
+          value="int1"
+        >
+          Park @ University
+        </option>
+        <option
+          value="int2"
+        >
+          Park @ Johnson
+        </option>
+        <option
+          value="int3"
+        >
+          Park @ Dayton
+        </option>
+        <option
+          value="int4"
+        >
+          Park @ Regent
+        </option>
+        <option
+          value="int5"
+        >
+          Park @ Braxton
+        </option>
+        <option
+          value="int6"
+        >
+          Park @ Vilas Washington
+        </option>
+        <option
+          value="int7"
+        >
+          Park @ Erin
+        </option>
+        <option
+          value="int8"
+        >
+          Park @ Fish Hatchery
+        </option>
+      </select>
+      <div
+        class="chakra-select__icon-wrapper css-162mkon"
+      >
+        <svg
+          aria-hidden="true"
+          class="chakra-select__icon"
+          focusable="false"
+          role="presentation"
+          style="width: 1em; height: 1em; color: currentColor;"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+            fill="currentColor"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div
+    class="chakra-form-control css-0"
+    role="group"
+  >
+    <label
+      class="chakra-form__label css-uvho5g"
+      for="field-:r1:"
+      id="field-:r1:-label"
+    >
+      Select Mode
+    </label>
+    <div
+      class="chakra-select__wrapper css-42b2qy"
+    >
+      <select
+        class="chakra-select css-1ik61og"
+        id="field-:r1:"
+      >
+        <option
+          value="history"
+        >
+          Historical Mode
+        </option>
+        <option
+          value="real"
+        >
+          Real-time Mode
+        </option>
+      </select>
+      <div
+        class="chakra-select__icon-wrapper css-162mkon"
+      >
+        <svg
+          aria-hidden="true"
+          class="chakra-select__icon"
+          focusable="false"
+          role="presentation"
+          style="width: 1em; height: 1em; color: currentColor;"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+            fill="currentColor"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div
+    class="chakra-form-control css-0"
+    role="group"
+  >
+    <label
+      class="chakra-form__label css-uvho5g"
+      for="field-:r2:"
+      id="field-:r2:-label"
+    >
+      Start Date
+    </label>
+    <input
+      aria-describedby="field-:r2:-helptext"
+      class="chakra-input css-0"
+      id="field-:r2:"
+      value="2018-09-12 14:23:02"
+    />
+    <div
+      class="chakra-form__helper-text css-0"
+      id="field-:r2:-helptext"
+    >
+      example: 2018-09-12 14:23:02
+    </div>
+  </div>
+  <div
+    class="chakra-form-control css-0"
+    role="group"
+  >
+    <label
+      class="chakra-form__label css-uvho5g"
+      for="field-:r3:"
+      id="field-:r3:-label"
+    >
+      End Date
+    </label>
+    <input
+      aria-describedby="field-:r3:-helptext"
+      class="chakra-input css-0"
+      id="field-:r3:"
+      value="2020-09-12 14:23:02"
+    />
+    <div
+      class="chakra-form__helper-text css-0"
+      id="field-:r3:-helptext"
+    >
+      example: 2018-09-12 14:23:02
+    </div>
+  </div>
+  <button
+    class="chakra-button css-uxt1e8"
+    type="button"
+  >
+    Query
+  </button>
+</div>
+`;
