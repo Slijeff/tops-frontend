@@ -1,22 +1,41 @@
 import {Button, FormControl, FormHelperText, FormLabel, Input, Select, VStack} from "@chakra-ui/react";
-import React from "react";
+import axios from "axios";
+import React, { useEffect } from "react";
 import {QueryFormData} from "../hooks/useQueryForm";
 
+type Intersection = {
+    intersectionid: number,
+    intersectionname: string
+}
 const QueryForms: React.FC<QueryFormData> = (Q) => {
+
+    const [intersection, setIntersection] = React.useState<Intersection[]>()
+    const getIntersection = async () => {
+        await axios.get("/intersection/all")
+            .then(res => {
+                setIntersection(res.data.data)
+            })
+    }
+    useEffect(() => {
+        getIntersection()
+    }, [])
 
     return (
         <VStack spacing={4}>
             <FormControl>
                 <FormLabel>Select Intersection</FormLabel>
                 <Select onChange={Q.setIntersection}>
-                    <option value="int1">Park @ University</option>
+                    {intersection?.map((i: Intersection) => {
+                        return (<option key={i.intersectionid} value={i.intersectionid}>{i.intersectionname}</option>)
+                    })}
+                    {/* <option value="int1">Park @ University</option>
                     <option value="int2">Park @ Johnson</option>
                     <option value="int3">Park @ Dayton</option>
                     <option value="int4">Park @ Regent</option>
                     <option value="int5">Park @ Braxton</option>
                     <option value="int6">Park @ Vilas Washington</option>
                     <option value="int7">Park @ Erin</option>
-                    <option value="int8">Park @ Fish Hatchery</option>
+                    <option value="int8">Park @ Fish Hatchery</option> */}
                 </Select>
             </FormControl>
 
