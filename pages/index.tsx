@@ -5,10 +5,13 @@ import dynamic from "next/dynamic"
 import React, {useEffect, useMemo, useState} from 'react'
 import useQueryForm from "../hooks/useQueryForm";
 import Datatable from "../components/Datatable";
-import Datagraph from "../components/Datagraph";
 
 const Map = dynamic(
     () => import("../components/Map"),
+    {ssr: false}
+)
+const Datagraph = dynamic(
+    () => import("../components/Datagraph"),
     {ssr: false}
 )
 
@@ -49,7 +52,7 @@ const Home: React.FC = () => {
                 <title>City of Madison Smart Corridor Dashboard</title>
             </Head>
 
-            <Center><VStack justifyContent={"center"} mt={8} spacing={8} w={"60vw"} alignItems={"center"}>
+            <Center><VStack justifyContent={"center"} mt={8} spacing={8} w={"70vw"} alignItems={"center"}>
                 <Heading>City of Madison Smart Corridor Dashboard</Heading>
                 <HStack spacing={8} w={"100%"}>
                     <QueryForms
