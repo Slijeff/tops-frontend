@@ -11,7 +11,6 @@ describe("QueryForms rendering", () => {
         }}/>)
 
         expect(container.firstChild).toMatchSnapshot()
-        expect(getByText(/Park @ University/i)).toBeTruthy()
         expect(getByText(/Historical Mode/i)).toBeTruthy()
         expect(getByText(/Real-time Mode/i)).toBeTruthy()
         expect(getByText(/Start Date/i)).toBeTruthy()

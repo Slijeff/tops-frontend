@@ -21,48 +21,7 @@ exports[`QueryForms rendering should render QueryForms correctly 1`] = `
       <select
         class="chakra-select css-1ik61og"
         id="field-:r0:"
-      >
-        <option
-          value="int1"
-        >
-          Park @ University
-        </option>
-        <option
-          value="int2"
-        >
-          Park @ Johnson
-        </option>
-        <option
-          value="int3"
-        >
-          Park @ Dayton
-        </option>
-        <option
-          value="int4"
-        >
-          Park @ Regent
-        </option>
-        <option
-          value="int5"
-        >
-          Park @ Braxton
-        </option>
-        <option
-          value="int6"
-        >
-          Park @ Vilas Washington
-        </option>
-        <option
-          value="int7"
-        >
-          Park @ Erin
-        </option>
-        <option
-          value="int8"
-        >
-          Park @ Fish Hatchery
-        </option>
-      </select>
+      />
       <div
         class="chakra-select__icon-wrapper css-162mkon"
       >
