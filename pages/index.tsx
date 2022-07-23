@@ -3,8 +3,9 @@ import Head from 'next/head'
 import QueryForms from "../components/QueryForms";
 import dynamic from "next/dynamic"
 import React, {useEffect, useMemo, useState} from 'react'
-import useQueryForm from "../hooks/useQueryForm";
 import Datatable from "../components/Datatable";
+import { tableData } from "../types/Datatable";
+import axios from "axios";
 
 const Map = dynamic(
     () => import("../components/Map"),
@@ -19,16 +20,30 @@ const Home: React.FC = () => {
     const [lon, setLon] = useState<number>(43.0731620)
     const [lat, setLat] = useState<number>(-89.4008362)
 
-    const {
-        intersection,
-        setIntersection,
-        mode,
-        setMode,
-        start,
-        setStart,
-        end,
-        setEnd
-    } = useQueryForm()
+    const [intersection, setIntersection] = useState<number>(0)
+    const [mode, setMode] = useState<string | undefined>("history")
+    const [start, setStart] = useState<string | undefined>("2018-09-12 14:23:02")
+    const [end, setEnd] = useState<string | undefined>("2022-09-12 14:23:02")
+    const [tableData, setTableData] = useState<tableData[]>([])
+
+    const handleIntersectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setIntersection(e.target.value)
+    }
+    const handleModeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setMode(e.target.value)
+    }
+    const handleStartChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setStart(e.target.value)
+    }
+    const handleEndChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setEnd(e.target.value)
+    }
+    const onQuery = async () => {
+        await axios.get(`/rsu/history?start=${start}&end=${end}&id=${intersection}`)
+            .then((res) => {
+                setTableData(res.data.data)
+            })
+    }
 
     const mapping = useMemo((): { [key: string]: any } => ({
         int1: [43.0731620, -89.4008362],
@@ -41,8 +56,9 @@ const Home: React.FC = () => {
         int8: [43.0565368, -89.3990862],
     }), [])
     useEffect(() => {
-        setLon(mapping[intersection][0])
-        setLat(mapping[intersection][1])
+        // setLon(mapping[intersection][0])
+        // setLat(mapping[intersection][1])
+        // console.log(intersection)
     }, [intersection, mapping, lon, lat])
 
     return (
@@ -57,17 +73,18 @@ const Home: React.FC = () => {
                 <HStack spacing={8} w={"100%"}>
                     <QueryForms
                         intersection={intersection}
-                        setIntersection={setIntersection}
+                        setIntersection={handleIntersectionChange}
                         mode={mode}
-                        setMode={setMode}
+                        setMode={handleModeChange}
                         start={start}
-                        setStart={setStart}
+                        setStart={handleStartChange}
                         end={end}
-                        setEnd={setEnd}
+                        setEnd={handleEndChange}
+                        onQuery={onQuery}
                     />
                     <Map lon={lon} lat={lat}/>
                 </HStack>
-                <Datatable/>
+                <Datatable data={tableData}/>
                 <Datagraph/>
             </VStack></Center>
 
