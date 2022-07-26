@@ -64,14 +64,14 @@ const QueryForms = ({
         <FormControl>
           <FormLabel>Start Date</FormLabel>
           <Input value={start} onChange={setStart} />
-          <FormHelperText>example: 2018-09-12 14:23:02</FormHelperText>
+          <FormHelperText>Format: YYYY-MM-DD HH:MM:SS.SSS</FormHelperText>
         </FormControl>
       )}
       {mode === "history" && (
         <FormControl>
           <FormLabel>End Date</FormLabel>
           <Input value={end} onChange={setEnd} />
-          <FormHelperText>example: 2018-09-12 14:23:02</FormHelperText>
+          {/* <FormHelperText>Format: YYYY-MM-DD HH:MM:SS.SSS</FormHelperText> */}
         </FormControl>
       )}
 

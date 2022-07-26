@@ -1,11 +1,11 @@
 import React from "react";
-import {TableContainer, Table, Thead, Th, Tr, Tbody, Td} from "@chakra-ui/react";
+import {TableContainer as Box, Table, Thead, Th, Tr, Tbody, Td} from "@chakra-ui/react";
 import { DatatableProps } from "../types/Datatable";
 
 const Datatable = ({data}: DatatableProps) => {
     
     return (
-        <TableContainer border={"gray.100"} borderWidth={2} rounded={"md"} w={"100%"} maxH={"45rem"} overflow={"scroll"}>
+        <Box border={"gray.100"} borderWidth={2} rounded={"md"} w={"100%"} maxH={"45rem"} overflowY={"auto"}>
             <Table variant='striped' size={"lg"}>
                 <Thead>
                     <Tr>
@@ -28,7 +28,8 @@ const Datatable = ({data}: DatatableProps) => {
                     })}
                 </Tbody>
             </Table>
-        </TableContainer>
+        </Box>
+        
     )
 }
 

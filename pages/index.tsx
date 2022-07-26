@@ -20,10 +20,10 @@ const Home: React.FC = () => {
     const [lon, setLon] = useState<number>(43.0731620)
     const [lat, setLat] = useState<number>(-89.4008362)
 
-    const [intersection, setIntersection] = useState<number>(0)
+    const [intersection, setIntersection] = useState<string>("")
     const [mode, setMode] = useState<string | undefined>("history")
-    const [start, setStart] = useState<string | undefined>("2018-09-12 14:23:02")
-    const [end, setEnd] = useState<string | undefined>("2022-09-12 14:23:02")
+    const [start, setStart] = useState<string | undefined>("2021-08-10 20:32:02.1")
+    const [end, setEnd] = useState<string | undefined>("2021-08-10 20:32:02.2")
     const [tableData, setTableData] = useState<tableData[]>([])
 
     const handleIntersectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -38,8 +38,14 @@ const Home: React.FC = () => {
     const handleEndChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEnd(e.target.value)
     }
-    const onQuery = async () => {
+    const queryHistory = async () => {
         await axios.get(`/rsu/history?start=${start}&end=${end}&id=${intersection}`)
+            .then((res) => {
+                setTableData(res.data.data)
+            })
+    }
+    const queryRealtime = async () => {
+        await axios.get(`/rsu/realtime?id=${intersection}`)
             .then((res) => {
                 setTableData(res.data.data)
             })
@@ -60,6 +66,19 @@ const Home: React.FC = () => {
         // setLat(mapping[intersection][1])
         // console.log(intersection)
     }, [intersection, mapping, lon, lat])
+    useEffect(() => {
+        let interval = setInterval(() => {}, 1000);
+        if (mode === "real") {
+            interval = setInterval(() => {
+                queryRealtime()
+            }, 1000)
+        } else {
+            setTableData([])
+        }
+        return () => {
+            clearInterval(interval)
+        }
+    }, [mode])
 
     return (
         <>
@@ -80,12 +99,12 @@ const Home: React.FC = () => {
                         setStart={handleStartChange}
                         end={end}
                         setEnd={handleEndChange}
-                        onQuery={onQuery}
+                        onQuery={queryHistory}
                     />
                     <Map lon={lon} lat={lat}/>
                 </HStack>
                 <Datatable data={tableData}/>
-                <Datagraph/>
+                <Datagraph data={tableData}/>
             </VStack></Center>
 
         </>
