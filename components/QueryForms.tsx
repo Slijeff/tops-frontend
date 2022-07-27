@@ -31,6 +31,9 @@ const QueryForms = ({
   const getIntersection = async () => {
     await axios.get("/intersection/all").then((res) => {
       setIntersectionOptions(res.data.data);
+    }).catch((err) => {
+      console.log("Error occured when fetching intersections")
+      console.log(err)
     });
   };
   useEffect(() => {

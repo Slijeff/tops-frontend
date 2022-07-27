@@ -1,9 +1,20 @@
 import {describe, expect} from "@jest/globals";
 import {fireEvent, render} from "@testing-library/react";
 import QueryForms from "../components/QueryForms";
+import * as axios from "axios";
+
+jest.mock("axios")
 
 describe("QueryForms rendering", () => {
+
+    //@ts-ignore
+    axios.get.mockResolvedValue({data: [{
+        intersectionid: 1,
+        intersectionname: "test"
+      }]});
+
     test("should render QueryForms correctly", () => {
+        
         const {getByText, container} = render(<QueryForms intersection={"int1"} setIntersection={(e) => {
         }} mode={"history"} setMode={(e) => {
         }} start={"2018-09-12 14:23:02"} setStart={(e) => {
