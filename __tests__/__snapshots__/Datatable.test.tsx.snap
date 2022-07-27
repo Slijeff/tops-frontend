@@ -2,7 +2,7 @@
 
 exports[`<Datatable/> rendering should render Datatable correctly 1`] = `
 <div
-  class="chakra-table__container css-d81vpl"
+  class="chakra-table__container css-iagoe6"
 >
   <table
     class="chakra-table css-0"
@@ -48,7 +48,7 @@ exports[`<Datatable/> rendering should render Datatable correctly 1`] = `
           class="css-0"
           role="gridcell"
         >
-          2019010321
+          2020-08-10 20:32:02.1
         </td>
         <td
           class="css-0"
@@ -60,71 +60,13 @@ exports[`<Datatable/> rendering should render Datatable correctly 1`] = `
           class="css-0"
           role="gridcell"
         >
-          stop
+          pass
         </td>
         <td
           class="css-0"
           role="gridcell"
         >
-          32492840295
-        </td>
-      </tr>
-      <tr
-        class="css-0"
-        role="row"
-      >
-        <td
-          class="css-0"
-          role="gridcell"
-        >
-          2019010322
-        </td>
-        <td
-          class="css-0"
-          role="gridcell"
-        >
-          2
-        </td>
-        <td
-          class="css-0"
-          role="gridcell"
-        >
-          Pass
-        </td>
-        <td
-          class="css-0"
-          role="gridcell"
-        >
-          32492840295
-        </td>
-      </tr>
-      <tr
-        class="css-0"
-        role="row"
-      >
-        <td
-          class="css-0"
-          role="gridcell"
-        >
-          2019010323
-        </td>
-        <td
-          class="css-0"
-          role="gridcell"
-        >
-          3
-        </td>
-        <td
-          class="css-0"
-          role="gridcell"
-        >
-          stop
-        </td>
-        <td
-          class="css-0"
-          role="gridcell"
-        >
-          32492840295
+          1234
         </td>
       </tr>
     </tbody>

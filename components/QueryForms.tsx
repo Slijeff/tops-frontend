@@ -75,9 +75,14 @@ const QueryForms = ({
         </FormControl>
       )}
 
-      <Button colorScheme={"teal"} w={"100%"} onClick={onQuery}>
-        Query
-      </Button>
+      {mode === "history" ? (
+        <Button colorScheme={"teal"} w={"100%"} onClick={onQuery}>
+          Query
+        </Button>
+      ) : (
+        <Button colorScheme={"teal"} w={"100%"} isDisabled={true} isLoading={true} loadingText={"Auto Querying..."}/>
+      )}
+      
     </VStack>
   );
 };

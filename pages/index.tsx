@@ -71,14 +71,14 @@ const Home: React.FC = () => {
         if (mode === "real") {
             interval = setInterval(() => {
                 queryRealtime()
-            }, 1000)
+            }, 1500)
         } else {
             setTableData([])
         }
         return () => {
             clearInterval(interval)
         }
-    }, [mode])
+    }, [mode, intersection])
 
     return (
         <>
