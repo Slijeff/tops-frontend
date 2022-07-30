@@ -1,4 +1,4 @@
-import {Center, Heading, HStack, VStack} from "@chakra-ui/react";
+import {Center, Heading, HStack, useToast, VStack} from "@chakra-ui/react";
 import Head from 'next/head'
 import QueryForms from "../components/QueryForms";
 import dynamic from "next/dynamic"
@@ -20,11 +20,13 @@ const Home: React.FC = () => {
     const [lon, setLon] = useState<number>(43.0731620)
     const [lat, setLat] = useState<number>(-89.4008362)
 
-    const [intersection, setIntersection] = useState<string>("")
+    const [intersection, setIntersection] = useState<string>("56072")
     const [mode, setMode] = useState<string | undefined>("history")
     const [start, setStart] = useState<string | undefined>("2021-08-10 20:32:02.1")
     const [end, setEnd] = useState<string | undefined>("2021-08-10 20:32:02.2")
     const [tableData, setTableData] = useState<tableData[]>([])
+
+    const toast = useToast()
 
     const handleIntersectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setIntersection(e.target.value)
@@ -42,12 +44,26 @@ const Home: React.FC = () => {
         await axios.get(`/rsu/history?start=${start}&end=${end}&id=${intersection}`)
             .then((res) => {
                 setTableData(res.data.data)
+            }).catch((err) => {
+                toast({
+                    title: "Error while fetching history data.",
+                    isClosable: true,
+                    status: "error",
+                    position: "top"
+                })
             })
     }
     const queryRealtime = async () => {
         await axios.get(`/rsu/realtime?id=${intersection}`)
             .then((res) => {
                 setTableData(res.data.data)
+            }).catch((err) => {
+                toast({
+                    title: "Error while fetching realtime data.",
+                    isClosable: true,
+                    status: "error",
+                    position: "top"
+                })
             })
     }
 

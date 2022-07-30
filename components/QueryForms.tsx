@@ -5,6 +5,7 @@ import {
   FormLabel,
   Input,
   Select,
+  useToast,
   VStack,
 } from "@chakra-ui/react";
 import axios from "axios";
@@ -27,11 +28,18 @@ const QueryForms = ({
     setEnd,
     onQuery,
 }: QueryFormProps) => {
+  const toast = useToast()
   const [intersectionOptions, setIntersectionOptions] = React.useState<Intersection[]>();
   const getIntersection = async () => {
     await axios.get("/intersection/all").then((res) => {
       setIntersectionOptions(res.data.data);
     }).catch((err) => {
+      toast({
+        title: "Error while fetching intersections.",
+        isClosable: true,
+        status: "error",
+        position: "top"
+      })
       console.log("Error occured when fetching intersections")
       console.log(err)
     });
