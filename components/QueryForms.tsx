@@ -10,12 +10,8 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect } from "react";
-import { QueryFormProps } from "../types/QueryFrom";
+import { Intersection, QueryFormProps } from "../types/QueryFrom";
 
-type Intersection = {
-  intersectionid: number;
-  intersectionname: string;
-};
 
 const QueryForms = ({
     intersection,
@@ -26,7 +22,7 @@ const QueryForms = ({
     setStart,
     end,
     setEnd,
-    onQuery,
+    onQuery
 }: QueryFormProps) => {
   const toast = useToast()
   const [intersectionOptions, setIntersectionOptions] = React.useState<Intersection[]>();
@@ -55,7 +51,7 @@ const QueryForms = ({
         <Select onChange={setIntersection}>
           {intersectionOptions?.map((i: Intersection) => {
             return (
-              <option key={i.intersectionid} value={i.intersectionid}>
+              <option key={i.intersectionid} value={i.intersectionid} data-lat={i.latitude} data-lon={i.longitude}>
                 {i.intersectionname}
               </option>
             );

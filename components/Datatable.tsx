@@ -10,7 +10,7 @@ const Datatable = ({data}: DatatableProps) => {
                 <Thead>
                     <Tr>
                         <Th>Timestamp</Th>
-                        <Th>Signal Group</Th>
+                        <Th>Movement</Th>
                         <Th>Status</Th>
                         <Th>End time</Th>
                     </Tr>
@@ -20,7 +20,7 @@ const Datatable = ({data}: DatatableProps) => {
                         return (
                             <Tr key={i}>
                                 <Td>{d.jsontimestamp}</Td>
-                                <Td>{d.signalgroupid}</Td>
+                                <Td>{d.movement}</Td>
                                 <Td>{d.eventstate}</Td>
                                 <Td>{d.minendtime}</Td>
                             </Tr>

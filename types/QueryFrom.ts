@@ -11,3 +11,10 @@ export interface QueryFormProps {
   setEnd: (e: ChangeEvent<HTMLInputElement>) => void;
   onQuery: () => void;
 }
+
+export interface Intersection{
+  intersectionid: number;
+  intersectionname: string;
+  longitude: number;
+  latitude: number;
+}

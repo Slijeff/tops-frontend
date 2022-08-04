@@ -4,7 +4,7 @@ import QueryForms from "../components/QueryForms";
 import dynamic from "next/dynamic"
 import React, {useEffect, useMemo, useState} from 'react'
 import Datatable from "../components/Datatable";
-import { tableData } from "../types/Datatable";
+import { tableData, tableDataRaw } from "../types/Datatable";
 import axios from "axios";
 
 const Map = dynamic(
@@ -29,6 +29,8 @@ const Home: React.FC = () => {
     const toast = useToast()
 
     const handleIntersectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setLon(Number(e.target.selectedOptions.item(0)?.getAttribute('data-lon')))
+        setLon(Number(e.target.selectedOptions.item(0)?.getAttribute('data-lat')))
         setIntersection(e.target.value)
     }
     const handleModeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -43,6 +45,9 @@ const Home: React.FC = () => {
     const queryHistory = async () => {
         await axios.get(`/rsu/history?start=${start}&end=${end}&id=${intersection}`)
             .then((res) => {
+                // const processed = res.data.data.map((record: tableDataRaw) => {
+                //     record.
+                // })
                 setTableData(res.data.data)
             }).catch((err) => {
                 toast({
@@ -66,22 +71,6 @@ const Home: React.FC = () => {
                 })
             })
     }
-
-    const mapping = useMemo((): { [key: string]: any } => ({
-        int1: [43.0731620, -89.4008362],
-        int2: [43.0719845, -89.4010049],
-        int3: [43.0710540, -89.4010191],
-        int4: [43.0675372, -89.4011519],
-        int5: [43.0662784, -89.4009186],
-        int6: [43.0630362, -89.4008103],
-        int7: [43.0599770, -89.4010300],
-        int8: [43.0565368, -89.3990862],
-    }), [])
-    useEffect(() => {
-        // setLon(mapping[intersection][0])
-        // setLat(mapping[intersection][1])
-        // console.log(intersection)
-    }, [intersection, mapping, lon, lat])
     useEffect(() => {
         let interval = setInterval(() => {}, 1000);
         if (mode === "real") {
