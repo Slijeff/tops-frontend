@@ -47,9 +47,6 @@ const Home: React.FC = () => {
     await axios
       .get(`/rsu/history?start=${start}&end=${end}&id=${intersection}`)
       .then((res) => {
-        // const processed = res.data.data.map((record: tableDataRaw) => {
-        //     record.
-        // })
         setTableData(res.data.data);
       })
       .catch((err) => {
