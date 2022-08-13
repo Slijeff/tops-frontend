@@ -61,7 +61,7 @@ const QueryForms = ({
 
       <FormControl>
         <FormLabel>Select Mode</FormLabel>
-        <Select onChange={setMode}>
+        <Select onChange={setMode} defaultValue={"real"}>
           <option value="history">Historical Mode</option>
           <option value="real">Real-time Mode</option>
         </Select>

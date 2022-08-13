@@ -16,7 +16,7 @@ const Home: React.FC = () => {
   const [coord, setCoord] = useState<number[]>([43.073162, -89.4008362]);
 
   const [intersection, setIntersection] = useState<string>("56072");
-  const [mode, setMode] = useState<string | undefined>("history");
+  const [mode, setMode] = useState<string | undefined>("real");
   const [start, setStart] = useState<string | undefined>(
     "2021-08-10 20:32:02.1"
   );
