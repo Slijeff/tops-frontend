@@ -6,9 +6,11 @@ import {
   GridRowsProp,
   GridColDef,
   GridToolbar,
+  GridCellParams,
 } from "@mui/x-data-grid";
 import type {} from "@mui/x-data-grid/themeAugmentation";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import NoRowsDisaply from "./NoRowsDisplay";
 
 const Datatable = ({ data }: DatatableProps) => {
   const theme = createTheme({});
@@ -31,41 +33,33 @@ const Datatable = ({ data }: DatatableProps) => {
   ];
 
   return (
-    // <Box border={"gray.100"} borderWidth={2} rounded={"md"} w={"100%"} maxH={"45rem"} overflowY={"auto"}>
-    //     <Table variant='striped' size={"lg"}>
-    //         <Thead>
-    //             <Tr>
-    //                 <Th>Timestamp</Th>
-    //                 <Th>Movement</Th>
-    //                 <Th>Status</Th>
-    //                 <Th>End time</Th>
-    //             </Tr>
-    //         </Thead>
-    //         <Tbody>
-    //             {data.map((d, i) => {
-    //                 return (
-    //                     <Tr key={i}>
-    //                         <Td>{d.jsontimestamp}</Td>
-    //                         <Td>{d.movement}</Td>
-    //                         <Td>{d.eventstate}</Td>
-    //                         <Td>{d.minendtime}</Td>
-    //                     </Tr>
-    //                 )
-    //             })}
-    //         </Tbody>
-    //     </Table>
-    // </Box>
     <ThemeProvider theme={theme}>
       <Box height={"600px"} width={"100%"} rounded={"2xl"}>
         <DataGrid
           rows={rows}
           columns={columns}
-          components={{ Toolbar: GridToolbar }}
+          components={{ Toolbar: GridToolbar, NoRowsOverlay: NoRowsDisaply }}
           sx={{
             "& .MuiDataGrid-columnHeaderTitle": { fontWeight: "bold" },
             borderRadius: "10px",
+            "& .stop": { background: "#F56565" },
+            "& .perm": { background: "#48BB78" },
+            "& .prot": { background: "#2F855A" },
+            "& .unkown": { background: "#A0AEC0" },
           }}
           disableColumnMenu
+          getCellClassName={(params: GridCellParams<string>) => {
+            if (params.value === "stop-And-Remain") {
+              return "stop";
+            } else if (params.value === "permissive-Movement-Allowed") {
+              return "perm";
+            } else if (params.value === "protected-Movement-Allowed") {
+              return "prot";
+            } else if (params.field === "Status") {
+              return "unkown";
+            }
+            return "";
+          }}
         />
       </Box>
     </ThemeProvider>
