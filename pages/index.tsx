@@ -2,7 +2,7 @@ import { Center, Heading, HStack, useToast, VStack } from "@chakra-ui/react";
 import Head from "next/head";
 import QueryForms from "../components/QueryForms";
 import dynamic from "next/dynamic";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Datatable from "../components/Datatable";
 import { tableData, tableDataRaw } from "../types/Datatable";
 import axios from "axios";
@@ -118,7 +118,7 @@ const Home: React.FC = () => {
             <Map lon={coord[0]} lat={coord[1]} />
           </HStack>
           <Datatable data={tableData} />
-          <Datagraph data={tableData} />
+          {mode === "real" && <Datagraph data={tableData} />}
         </VStack>
       </Center>
     </>
