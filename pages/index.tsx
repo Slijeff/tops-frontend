@@ -74,7 +74,7 @@ const Home: React.FC = () => {
       });
   };
   useEffect(() => {
-    let interval = setInterval(() => {}, 1000);
+    let interval = setInterval(() => {}, 10000);
     if (mode === "real") {
       interval = setInterval(() => {
         queryRealtime();
@@ -103,7 +103,7 @@ const Home: React.FC = () => {
           alignItems={"center"}
         >
           <Heading>City of Madison Smart Corridor Dashboard</Heading>
-          <HStack spacing={8} w={"100%"}>
+          <HStack spacing={8} w={"100%"} justify={"center"}>
             <QueryForms
               intersection={intersection}
               setIntersection={handleIntersectionChange}

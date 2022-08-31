@@ -10,7 +10,7 @@ export interface Coordinate {
 
 const Map: React.FC<Coordinate> = ({lon, lat}) => {
     return (
-        <MapContainer center={[lon, lat]} zoom={18} scrollWheelZoom={false} style={{ height: "450px", width: "100%" }}>
+        <MapContainer center={[lon, lat]} zoom={18} scrollWheelZoom={false} style={{ height: "450px", width: "1000px" }}>
             <SetViewOnChange lon={lon} lat={lat}/>
             <TileLayer
                 attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
