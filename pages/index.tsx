@@ -117,7 +117,7 @@ const Home: React.FC = () => {
             />
             <Map lon={coord[0]} lat={coord[1]} />
           </HStack>
-          <Datatable data={tableData} />
+          <Datatable data={tableData} mode={mode} />
           {mode === "real" && <Datagraph data={tableData} />}
         </VStack>
       </Center>

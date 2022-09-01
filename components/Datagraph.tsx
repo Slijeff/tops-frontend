@@ -9,8 +9,8 @@ import {
   Cell,
   Legend,
 } from "recharts";
-import { DatatableProps } from "../types/Datatable";
-const Datagraph = ({ data }: DatatableProps) => {
+import { DatagraphProps } from "../types/Datagraph";
+const Datagraph = ({ data }: DatagraphProps) => {
   const colorMap: { [key: string]: string } = {
     "stop-And-Remain": "#F56565",
     "permissive-Movement-Allowed": "#48BB78",

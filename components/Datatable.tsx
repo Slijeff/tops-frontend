@@ -1,5 +1,5 @@
 import React from "react";
-import { Box } from "@chakra-ui/react";
+import { Box, Badge, Text } from "@chakra-ui/react";
 import { DatatableProps } from "../types/Datatable";
 import {
   DataGrid,
@@ -12,7 +12,7 @@ import type {} from "@mui/x-data-grid/themeAugmentation";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import NoRowsDisaply from "./NoRowsDisplay";
 
-const Datatable = ({ data }: DatatableProps) => {
+const Datatable = ({ data, mode }: DatatableProps) => {
   const theme = createTheme({});
 
   const rows: GridRowsProp = data.map((d, i) => {
@@ -31,38 +31,55 @@ const Datatable = ({ data }: DatatableProps) => {
     { field: "Status", flex: 1 },
     { field: "Endtime", headerName: "End time", flex: 1 },
   ];
+  console.log(data);
 
   return (
-    <ThemeProvider theme={theme}>
-      <Box height={"600px"} width={"100%"} rounded={"2xl"}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          components={{ Toolbar: GridToolbar, NoRowsOverlay: NoRowsDisaply }}
-          sx={{
-            "& .MuiDataGrid-columnHeaderTitle": { fontWeight: "bold" },
-            borderRadius: "10px",
-            "& .stop": { background: "#F56565" },
-            "& .perm": { background: "#48BB78" },
-            "& .prot": { background: "#2F855A" },
-            "& .unkown": { background: "#A0AEC0" },
-          }}
-          disableColumnMenu
-          getCellClassName={(params: GridCellParams<string>) => {
-            if (params.value === "stop-And-Remain") {
-              return "stop";
-            } else if (params.value === "permissive-Movement-Allowed") {
-              return "perm";
-            } else if (params.value === "protected-Movement-Allowed") {
-              return "prot";
-            } else if (params.field === "Status") {
-              return "unkown";
-            }
-            return "";
-          }}
-        />
-      </Box>
-    </ThemeProvider>
+    <>
+      {mode === "real" && (
+        <>
+          <Text fontSize={"xl"} fontWeight="bold">
+            Record Timestamp:
+          </Text>
+          <Badge fontSize={"2em"} colorScheme="gray" rounded={"lg"}>
+            {data[0] != undefined && data[0].jsontimestamp}
+          </Badge>
+        </>
+      )}
+
+      <ThemeProvider theme={theme}>
+        <Box height={"600px"} width={"100%"} rounded={"2xl"}>
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            components={{ Toolbar: GridToolbar, NoRowsOverlay: NoRowsDisaply }}
+            sx={{
+              "& .MuiDataGrid-columnHeaderTitle": { fontWeight: "bold" },
+              borderRadius: "10px",
+              "& .stop": { background: "#F56565" },
+              "& .perm": { background: "#48BB78" },
+              "& .prot": { background: "#2F855A" },
+              "& .unkown": { background: "#A0AEC0" },
+            }}
+            disableColumnMenu
+            getCellClassName={(params: GridCellParams<string>) => {
+              if (params.value === "stop-And-Remain") {
+                return "stop";
+              } else if (params.value === "permissive-Movement-Allowed") {
+                return "perm";
+              } else if (params.value === "protected-Movement-Allowed") {
+                return "prot";
+              } else if (params.field === "Status") {
+                return "unkown";
+              }
+              return "";
+            }}
+            columnVisibilityModel={{
+              Timestamp: mode !== "real",
+            }}
+          />
+        </Box>
+      </ThemeProvider>
+    </>
   );
 };
 

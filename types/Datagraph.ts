@@ -1,11 +1,11 @@
 export interface tableData {
-    jsontimestamp: string,
-    eventstate: string,
-    minendtime: number,
-    signalgroupid: string,
-    intersectionid: number
+  jsontimestamp: string;
+  eventstate: string;
+  minendtime: string;
+  movement: string;
+  intersectionid: number;
 }
 
-export interface DatagraphProps{
-    data: tableData[];
+export interface DatagraphProps {
+  data: tableData[];
 }
