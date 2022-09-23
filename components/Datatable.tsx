@@ -26,12 +26,11 @@ const Datatable = ({ data, mode }: DatatableProps) => {
   });
 
   const columns: GridColDef[] = [
-    { field: "Timestamp", flex: 1, type: "time" },
+    { field: "Timestamp", flex: 1 },
     { field: "Movement", flex: 1 },
     { field: "Status", flex: 1 },
     { field: "Endtime", headerName: "End time", flex: 1 },
   ];
-  console.log(data);
 
   return (
     <>
@@ -55,10 +54,10 @@ const Datatable = ({ data, mode }: DatatableProps) => {
             sx={{
               "& .MuiDataGrid-columnHeaderTitle": { fontWeight: "bold" },
               borderRadius: "10px",
-              "& .stop": { background: "#F56565" },
-              "& .perm": { background: "#48BB78" },
-              "& .prot": { background: "#2F855A" },
-              "& .unkown": { background: "#A0AEC0" },
+              "& .stop": { color: "#F56565" },
+              "& .perm": { color: "#48BB78" },
+              "& .prot": { color: "#2F855A" },
+              "& .unkown": { color: "#A0AEC0" },
             }}
             disableColumnMenu
             getCellClassName={(params: GridCellParams<string>) => {
